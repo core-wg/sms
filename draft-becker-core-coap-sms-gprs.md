@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-becker-core-coap-sms-gprs-06pre
+docname: draft-becker-core-coap-sms-gprs-latest
 cat: std
 pi:
   strict: 'no'
