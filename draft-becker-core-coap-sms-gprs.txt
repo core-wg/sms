@@ -3,7 +3,7 @@
 
 
 CoRE                                                      M. Becker, Ed.
-Internet-Draft                           ComNets, TZI, University Bremen
+Internet-Draft                                     Tridonic GmbH & Co KG
 Intended status: Standards Track                                   K. Li
 Expires: July 28, 2017                                     Alibaba Group
                                                           K. Kuladinithi
@@ -955,13 +955,13 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
    Markus Becker (editor)
-   ComNets, TZI, University Bremen
-   Bibliothekstrasse 1
-   Bremen  28359
-   Germany
+   Tridonic GmbH & Co KG
+   Faerbergasse 15
+   Dornbirn  6851
+   Austria
 
-   Phone: +49 421 218 62379
-   Email: mab@comnets.uni-bremen.de
+   Phone: +43 5572 395 45637
+   Email: markus.becker@tridonic.com
 
 
    Kepeng LI
