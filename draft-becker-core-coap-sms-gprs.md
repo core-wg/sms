@@ -21,13 +21,13 @@ author:
 - role: editor
   ins: M. Becker
   name: Markus Becker
-  org: ComNets, TZI, University Bremen
-  street: Bibliothekstrasse 1
-  code: '28359'
-  city: Bremen
-  country: Germany
-  phone: "+49 421 218 62379"
-  email: mab@comnets.uni-bremen.de
+  org: Tridonic GmbH & Co KG
+  street: Färbergasse 15
+  code: '6851'
+  city: Dornbirn
+  country: Austria
+  phone: "+43 5572 395 45637"
+  email: markus.becker@tridonic.com
 - ins: K. Li
   name: Kepeng LI
   org: Alibaba Group
