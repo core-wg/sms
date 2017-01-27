@@ -1,0 +1,1100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Transport of CoAP over SMS</title>
+
+  
+<style type="text/css">/*<![CDATA[*/
+@viewport {
+  zoom: 1.0;
+  width: extend-to-zoom;
+}
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+@media screen and (min-width: 1024px) {
+  ul.toc, #rfc\.toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 500px);
+    width: 300px;
+    padding: 0 1em;
+    z-index: 1;
+  }
+  #rfc\.toc {
+    top: 16px;
+  }
+  ul.toc {
+    top: 80px;
+    overflow: auto;
+  }
+
+  body {
+    padding-left: 1.5em;
+    padding-right: 29em;
+  }
+}
+
+body {
+  font: 15px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #333;
+  font-size-adjust: 0.5;
+  line-height: 130%;
+  margin: 2.5em auto;
+  max-width: 724px;
+}
+
+.title, .filename, h1, h2, h3, h4 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size-adjust: 0.5;
+  font-weight: 500;
+  color: #333;
+  line-height: 100%;
+  margin: 0.8em 0 0.3em;
+}
+.title { font-size: 36px; }
+h1 { font-size: 30px; }
+h2 { font-size: 24px; }
+h3, h4 { font-size: 18px; }
+h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
+  color: #333;
+}
+
+ul.toc li {
+  list-style: none;
+  text-indent: -2.5em;
+  padding-left: 2.5em;
+  padding-bottom: 5px;
+  margin: 0;
+}
+ul.toc ul {
+  margin: 0;
+}
+/* xml2rfc nests ul directly inside ul which messes with the style badly */
+ul.toc, ul.toc>ul, ul.toc ul>ul {
+  margin: 0 0 0 1.5em;
+}
+
+table {
+  margin-left: 0em;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+tr:nth-child(2n+1) > td,
+tr:nth-child(2n+1) > th {
+  background-color: #f9f9f9;
+}
+td.reference {
+  max-width: 200px;
+  border-top: none;
+  padding-right: 1em;
+}
+.right {
+  text-align: right;
+}
+
+
+table.header {
+  width: 100%;
+}
+table.header td {
+  border: none;
+  background-color: transparent;
+  color: black;
+}
+.filename {
+  color: rgb(119, 119, 119);
+  font-size: 23px;
+  font-weight: normal;
+  height: auto;
+  line-height: 100%;
+}
+#rfc\.abstract+p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 130%;
+}
+
+samp, tt, code, pre {
+  font: 11pt consolas, monospace;
+  font-size-adjust: none;
+}
+pre {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+  padding: 5px;
+  margin: 5px;
+}
+.figure {
+  font-style: italic;
+  margin: 0 1.5em;
+}
+
+address {
+  margin: 10px 0 0;
+}
+.vcard {
+  font-style: normal;
+}
+.vcardline {
+  display: block;
+}
+.vcardline .fn {
+  font-weight: bold;
+}
+.vcardline .hidden {
+  display: none;
+}
+
+dl {
+  margin-left: 1em;
+}
+dl.dl-horizontal: {
+  margin-left: 0;
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.nohang > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .5em;
+}
+dl.compact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+ul.empty {
+  list-style-type: none;
+}
+ul.empty li {
+  margin-top: .5em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+a {
+  text-decoration: none;
+}
+a[href] {
+  color: #2a6496;
+}
+a[href]:hover {
+  background-color: #eee;
+}
+
+ol, ul, li, p {
+  padding: 0;
+  margin: 0.5em 0 0.5em 2em;
+}
+li, p {
+  margin-left: 0;
+}
+address {
+  font-style: normal;
+}
+
+.github-fork-ribbon-wrapper {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  /* "Fork me on GitHub" CSS ribbon based on
+   * https://github.com/simonwhitaker/github-fork-ribbon-css
+   */
+  .github-fork-ribbon {
+    position: absolute;
+    padding: 2px 0;
+    background-color: #a00;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    pointer-events: auto;
+
+    top: 38px;
+    right: -45px;
+
+    transform: rotate(45deg);
+  }
+
+  .github-fork-ribbon a[href],
+  .github-fork-ribbon a[href]:hover {
+    color: #fff;
+    background-color: transparent;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    width: 190px;
+    line-height: 18px;
+
+    display: inline-block;
+    padding: 2px 0;
+
+    border: 1.5px dotted #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .github-fork-ribbon-wrapper {
+    display: block;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    overflow: hidden;
+    top: 0; right: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .github-fork-ribbon-wrapper {
+    position: fixed;
+  }
+  /*]]>*/</style>
+
+
+  <link href="#rfc.toc" rel="Contents"/>
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
+<link href="#rfc.section.1.1" rel="Chapter" title="1.1 Motivation"/>
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 Requirements Language"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 Scenarios"/>
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 MO-MT Scenarios"/>
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 MT Scenarios"/>
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 MO Scenarios"/>
+<link href="#rfc.section.5" rel="Chapter" title="5 Message Exchanges"/>
+<link href="#rfc.section.5.1" rel="Chapter" title="5.1 Message Exchange for SMS in a Cellular-To-Cellular Mobile-Originated and Mobile-Terminated Scenario"/>
+<link href="#rfc.section.6" rel="Chapter" title="6 Encoding Schemes of CoAP for SMS transport"/>
+<link href="#rfc.section.7" rel="Chapter" title="7 Message Size Implementation Considerations"/>
+<link href="#rfc.section.8" rel="Chapter" title="8 Addressing"/>
+<link href="#rfc.section.9" rel="Chapter" title="9 Options"/>
+<link href="#rfc.section.9.1" rel="Chapter" title="9.1 New Options for mixed IP operation."/>
+<link href="#rfc.section.10" rel="Chapter" title="10 URI Scheme"/>
+<link href="#rfc.section.11" rel="Chapter" title="11 Transmission Parameters"/>
+<link href="#rfc.section.12" rel="Chapter" title="12 Multicast"/>
+<link href="#rfc.section.13" rel="Chapter" title="13 Security Considerations"/>
+<link href="#rfc.section.14" rel="Chapter" title="14 IANA Considerations"/>
+<link href="#rfc.section.14.1" rel="Chapter" title="14.1 CoAP Option Number"/>
+<link href="#rfc.section.14.2" rel="Chapter" title="14.2 URI Scheme Registration"/>
+<link href="#rfc.references" rel="Chapter" title="15 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="15.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="15.2 Informative References"/>
+<link href="#rfc.appendix.A" rel="Chapter" title="A SMS encoding"/>
+<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 ASCII-optimized SMS encoding"/>
+<link href="#rfc.appendix.B" rel="Chapter" title="B Changelog"/>
+<link href="#rfc.acknowledgements" rel="Chapter"/>
+<link href="#rfc.contributors" rel="Chapter"/>
+<link href="#rfc.authors" rel="Chapter"/>
+
+
+  <meta name="generator" content="xml2rfc version 2.5.2 - http://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Becker, M., Ed., Li, K., Kuladinithi, K., and T. P&#246;tsch" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-becker-core-coap-sms-gprs-latest" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-1-24" />
+  <meta name="dct.abstract" content="Short Message Service (SMS) of mobile cellular networks is frequently used in Machine-To-Machine (M2M) communications, such as for telematic devices. The service offers small packet sizes and high delays just as other typical low-power and lossy networks (LLNs), i.e. 6LoWPANs. The design of the Constrained Application Protocol (CoAP, RFC7252), that took the limitations of LLNs into account, is thus also applicable to other transports. The adaptation of CoAP to SMS transport mechanisms is described in this document." />
+  <meta name="description" content="Short Message Service (SMS) of mobile cellular networks is frequently used in Machine-To-Machine (M2M) communications, such as for telematic devices. The service offers small packet sizes and high delays just as other typical low-power and lossy networks (LLNs), i.e. 6LoWPANs. The design of the Constrained Application Protocol (CoAP, RFC7252), that took the limitations of LLNs into account, is thus also applicable to other transports. The adaptation of CoAP to SMS transport mechanisms is described in this document." />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+  <td class="left">CoRE</td>
+  <td class="right">M. Becker, Ed.</td>
+</tr>
+<tr>
+  <td class="left">Internet-Draft</td>
+  <td class="right">Tridonic GmbH &amp; Co KG</td>
+</tr>
+<tr>
+  <td class="left">Intended status: Standards Track</td>
+  <td class="right">K. Li</td>
+</tr>
+<tr>
+  <td class="left">Expires: July 28, 2017</td>
+  <td class="right">Alibaba Group</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">K. Kuladinithi</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">ComNets, Hamburg University of Technology</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">T. P&#246;tsch</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">New York University Abu Dhabi</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">January 24, 2017</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">Transport of CoAP over SMS<br />
+  <span class="filename">draft-becker-core-coap-sms-gprs-latest</span></p>
+  
+  <h1 id="rfc.abstract">
+  <a href="#rfc.abstract">Abstract</a>
+</h1>
+<p>Short Message Service (SMS) of mobile cellular networks is frequently used in Machine-To-Machine (M2M) communications, such as for telematic devices. The service offers small packet sizes and high delays just as other typical low-power and lossy networks (LLNs), i.e. 6LoWPANs. The design of the Constrained Application Protocol (CoAP, RFC7252), that took the limitations of LLNs into account, is thus also applicable to other transports. The adaptation of CoAP to SMS transport mechanisms is described in this document.</p>
+<h1 id="rfc.status">
+  <a href="#rfc.status">Status of This Memo</a>
+</h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on July 28, 2017.</p>
+<h1 id="rfc.copyrightnotice">
+  <a href="#rfc.copyrightnotice">Copyright Notice</a>
+</h1>
+<p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
+<ul><li>1.1.   <a href="#rfc.section.1.1">Motivation</a></li>
+</ul><li>2.   <a href="#rfc.section.2">Terminology</a></li>
+<li>3.   <a href="#rfc.section.3">Requirements Language</a></li>
+<li>4.   <a href="#rfc.section.4">Scenarios</a></li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">MO-MT Scenarios</a></li>
+<li>4.2.   <a href="#rfc.section.4.2">MT Scenarios</a></li>
+<li>4.3.   <a href="#rfc.section.4.3">MO Scenarios</a></li>
+</ul><li>5.   <a href="#rfc.section.5">Message Exchanges</a></li>
+<ul><li>5.1.   <a href="#rfc.section.5.1">Message Exchange for SMS in a Cellular-To-Cellular Mobile-Originated and Mobile-Terminated Scenario</a></li>
+</ul><li>6.   <a href="#rfc.section.6">Encoding Schemes of CoAP for SMS transport</a></li>
+<li>7.   <a href="#rfc.section.7">Message Size Implementation Considerations</a></li>
+<li>8.   <a href="#rfc.section.8">Addressing</a></li>
+<li>9.   <a href="#rfc.section.9">Options</a></li>
+<ul><li>9.1.   <a href="#rfc.section.9.1">New Options for mixed IP operation.</a></li>
+</ul><li>10.   <a href="#rfc.section.10">URI Scheme</a></li>
+<li>11.   <a href="#rfc.section.11">Transmission Parameters</a></li>
+<li>12.   <a href="#rfc.section.12">Multicast</a></li>
+<li>13.   <a href="#rfc.section.13">Security Considerations</a></li>
+<li>14.   <a href="#rfc.section.14">IANA Considerations</a></li>
+<ul><li>14.1.   <a href="#rfc.section.14.1">CoAP Option Number</a></li>
+<li>14.2.   <a href="#rfc.section.14.2">URI Scheme Registration</a></li>
+</ul><li>15.   <a href="#rfc.references">References</a></li>
+<ul><li>15.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>15.2.   <a href="#rfc.references.2">Informative References</a></li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">SMS encoding</a></li>
+<ul><li>A.1.   <a href="#rfc.appendix.A.1">ASCII-optimized SMS encoding</a></li>
+</ul><li>Appendix B.   <a href="#rfc.appendix.B">Changelog</a></li>
+<li><a href="#rfc.acknowledgements">Acknowledgements</a></li>
+<li><a href="#rfc.contributors">Contributors</a></li>
+<li><a href="#rfc.authors">Authors' Addresses</a></li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a></h1>
+<p id="rfc.section.1.p.1">This specification details the usage of the Constrained Application Protocol on the Short Message Service (SMS) of mobile cellular networks.</p>
+<h1 id="rfc.section.1.1"><a href="#rfc.section.1.1">1.1.</a> <a href="#motivation" id="motivation">Motivation</a></h1>
+<p id="rfc.section.1.1.p.1">In some M2M environments, internet connectivity is not supported by the constrained end-points, but a cellular network connection is supported instead. Internet connectivity might also be switched off for power saving reasons or the cellular coverage does not allow for Internet connectivity. In these situations, SMS will be supported, instead of UDP/IP over General Packet Radio Service (GPRS), High Speed Packet Access (HSPA) or Long Term Evolution (LTE) networks.</p>
+<p id="rfc.section.1.1.p.2">In 3GPP, SMS is identified as the transport protocol for small data transmissions (See <a href="#ts23_888">[ts23_888]</a> for Key Issue on Machine Type Communication (MTC) Device Trigger and the proposed solutions in Sections 6.2, 6.42, 6.44, 6.48, 6.52, 6.60, and 6.61). In <a href="#ts23_682">[ts23_682]</a> &#8216;Architecture Enhancements to facilitate communications with Packet Data Networks and Applications&#8217; SMS is at the moment the only Trigger Delivery (Trigger Delivery using T4).</p>
+<p id="rfc.section.1.1.p.3">M2M protocols using SMS, e.g. for telematics, are using mostly various diverse proprietary and closed binary protocols with limited publicly available documentation at the moment.</p>
+<p id="rfc.section.1.1.p.4">In Open Mobile Alliance (OMA) LightweightM2M technical specification <a href="#oma_lightweightm2m_ts">[oma_lightweightm2m_ts]</a>, SMS is identified as an alternative transport for CoAP messages.</p>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a></h1>
+<p id="rfc.section.2.p.1">This document uses the following terminology:</p>
+<p/>
+
+<dl>
+  <dt>CoAP Server and Client</dt>
+  <dd style="margin-left: 8"><br/> The terms CoAP Server and CoAP Client are used synonymously to Server and Client as specified in the terminology section of <a href="#RFC7252">[RFC7252]</a>.</dd>
+  <dt>Mobile Station (MS)</dt>
+  <dd style="margin-left: 8"><br/> A Mobile Station includes all required user equipment and software that is needed for communication with a mobile network. As defined in <a href="#etsi_ts101_748">[etsi_ts101_748]</a>.</dd>
+</dl>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#requirements-language" id="requirements-language">Requirements Language</a></h1>
+<p id="rfc.section.3.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in <a href="#RFC2119">RFC 2119</a> <cite title="NONE">[RFC2119]</cite>.</p>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#scenarios" id="scenarios">Scenarios</a></h1>
+<p id="rfc.section.4.p.1">Several scenarios are presented first for M2M communications with CoAP over SMS. First Mobile-Originating Mobile-Terminating (MO-MT) scenarios are presented, where both CoAP endpoints are in devices in a cellular network. Next, Mobile-Terminating (MT) scenarios are detailed, where only the CoAP server is in a cellular network. Finally, Mobile-Originating (MO) scenarios where the CoAP client is in the cellular network.</p>
+<h1 id="rfc.section.4.1"><a href="#rfc.section.4.1">4.1.</a> <a href="#mo-mt-scenarios" id="mo-mt-scenarios">MO-MT Scenarios</a></h1>
+<p id="rfc.section.4.1.p.1">Two mobile cellular terminals communicate by exchanging a CoAP Request and Response embedded into short message protocol data units (PDUs) (depicted in <a href="#cell2cell_sms">Figure 1</a>). Both terminals are connected via a Short Message Service Centre (SMS-C).</p>
+<div id="rfc.figure.1"/>
+<div id="cell2cell_sms"/>
+<pre>
+         CoAP-REQ            CoAP-REQ
++------+   (SMS)   +-------+   (SMS)  +------+
+|  A   | --------&gt; | SMS-C | -------&gt; |  B   |
+|(cell)| &lt;-------- |       | &lt;------- |(cell)|
++------+ CoAP-RES  +-------+ CoAP-RES +------+
+           (SMS)               (SMS)
+</pre>
+<p class="figure">Figure 1: Cellular and Cellular Communication (only SMS-based)</p>
+<h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> <a href="#mt-scenarios" id="mt-scenarios">MT Scenarios</a></h1>
+<p id="rfc.section.4.2.p.1">An IP host and a mobile cellular terminal communicate by exchanging CoAP Request and Response. The IP host uses protocols offered by the SMS-C (e.g. Short Message Peer-to-Peer (SMPP <a href="#smpp">[smpp]</a>), Computer Interface to Message Distribution (CIMD <a href="#cimd">[cimd]</a>), Universal Computer Protocol/External Machine Interface (UCP/EMI <a href="#ucp">[ucp]</a>)) to submit a short message for delivery, which contains the CoAP Request (depicted in <a href="#ip2cell_sms">Figure 2</a>).</p>
+<div id="rfc.figure.2"/>
+<div id="ip2cell_sms"/>
+<pre>
+           CIMD               CoAP-REQ
++------+   SMPP    +-------+    (SMS)   +------+
+|  A   | --------&gt; | SMS-C | ---------&gt; |  B   |
+| (IP) | &lt;-------- |       | &lt;--------- |(cell)|
++------+           +-------+  CoAP-RES  +------+
+                                (SMS)
+</pre>
+<p class="figure">Figure 2: IP and Cellular Communication</p>
+<p id="rfc.section.4.2.p.2">There are service providers that offer SMS delivery and notification using an HTTP/REST interface (depicted in <a href="#ip2cell_sms_prov">Figure 3</a>).</p>
+<div id="rfc.figure.3"/>
+<div id="ip2cell_sms_prov"/>
+<pre>
+          HTTP-REQ                 CIMD            CoAP-REQ
++------+ (CoAP-DATA) +----------+  SMPP   +-----+    (SMS)   +------+
+|      |             | SMS      |  SS7    |SMS-C|            |      |
+|  A   | ----------&gt; | Service  | ------&gt; |  /  | ---------&gt; |  B   |
+| (IP) | &lt;---------- | Provider | &lt;------ | HLR | &lt;--------- |(cell)|
++------+  HTTP-RES   +----------+         +-----+  CoAP-RES  +------+
+         (CoAP-DATA)                                 (SMS)
+</pre>
+<p class="figure">Figure 3: IP and Cellular Communication (using an SMS Service Provider)</p>
+<h1 id="rfc.section.4.3"><a href="#rfc.section.4.3">4.3.</a> <a href="#mo-scenarios" id="mo-scenarios">MO Scenarios</a></h1>
+<p id="rfc.section.4.3.p.1">A mobile cellular terminal and an IP host communicate by exchanging CoAP Request and Response. The mobile cellular terminal sends a CoAP Request in a short message, which is in turn forwarded by the SMS-C (e.g. with Short Message Peer-to-Peer (SMPP <a href="#smpp">[smpp]</a>), Computer Interface to Message Distribution (CIMD <a href="#cimd">[cimd]</a>), Universal Computer Protocol/External Machine Interface (UCP/EMI <a href="#ucp">[ucp]</a>)) as depicted in <a href="#cell2ip_sms">Figure 4</a>). This scenario can be a fall-back for mobile-originating communication, when IP connectivity cannot be setup (e.g. due to missing coverage).</p>
+<div id="rfc.figure.4"/>
+<div id="cell2ip_sms"/>
+<pre>
+          CoAP-REQ              CIMD
++------+   (SMS)   +-------+    SMPP    +------+
+|  A   | --------&gt; | SMS-C | ---------&gt; |  B   |
+|(cell)| &lt;-------- |       | &lt;--------- | (IP) |
++------+  CoAP-RES +-------+            +------+
+          (SMS)
+</pre>
+<p class="figure">Figure 4: Cellular and IP Communication</p>
+<p id="rfc.section.4.3.p.2">There are service providers offering SMS delivery and notification using an HTTP/REST interface (depicted in <a href="#cell2ip_sms_prov">Figure 5</a>).</p>
+<div id="rfc.figure.5"/>
+<div id="cell2ip_sms_prov"/>
+<pre>
+          CoAP-REQ             CIMD                HTTP-REQ
++------+   (SMS)    +-------+  SMPP  +----------+ (CoAP-DATA) +----+
+|      |            | SMS-C |  SS7   | SMS      |             |    |
+|  A   | ---------&gt; |   /   | -----&gt; | Service  | ----------&gt; | B  |
+|(cell)| &lt;--------- |  HLR  | &lt;----- | Provider | &lt;---------- |(IP)|
++------+  CoAP-RES  +-------+        +----------+  HTTP-RES   +----+
+           (SMS)                                  (CoAP-DATA)
+</pre>
+<p class="figure">Figure 5: IP and Cellular Communication (using an SMS Service Provider)</p>
+<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#message-exchanges" id="message-exchanges">Message Exchanges</a></h1>
+<h1 id="rfc.section.5.1"><a href="#rfc.section.5.1">5.1.</a> <a href="#message-exchange-for-sms-in-a-cellular-to-cellular-mobile-originated-and-mobile-terminated-scenario" id="message-exchange-for-sms-in-a-cellular-to-cellular-mobile-originated-and-mobile-terminated-scenario">Message Exchange for SMS in a Cellular-To-Cellular Mobile-Originated and Mobile-Terminated Scenario</a></h1>
+<p id="rfc.section.5.1.p.1">The CoAP Client works as a Mobile Station to send the short message, and the CoAP Server works as another Mobile Station to receive the short message. All short messages are stored and forwarded by the Service Center.  The message exchange between the CoAP Client and the CoAP Server is depicted in the figure below:</p>
+<div id="rfc.figure.6"/>
+<div id="msc_sms"/>
+<pre>
+ MS/CoAP CLIENT        Service Center          MS/CoAP SERVER
+     |                       |                        |
+     |   ---SMS-SUBMIT---&gt;   |                        |
+     | &lt;-SMS-SUBMIT-REPORT-- |                        |
+     |                       |                        |
+     |                       |    --SMS-DELIVER---&gt;   |
+     |                       | &lt;-SMS-DELIVER-REPORT-- |
+     |                       |                        |
+     | &lt;-SMS-STATUS-REPORT-- |                        |
+     |                       |                        |
+
+</pre>
+<p class="figure">Figure 6: CoAP Messages over SMS</p>
+<p id="rfc.section.5.1.p.2">Note that the message exchange is just for one request message from CoAP Client and CoAP Server. It includes the following steps:</p>
+<p id="rfc.section.5.1.p.3">Step 1: The CoAP Client sends a CoAP request in a SMS-SUBMIT message to the Service Center.  The CoAP Server address is specified as TP-Destination-Address (see <a href="#ts23_040">[ts23_040]</a>).</p>
+<p id="rfc.section.5.1.p.4">Step 2: The Service Center returns a SMS-SUBMIT-REPORT message to the CoAP Client.</p>
+<p id="rfc.section.5.1.p.5">Step 3: The Service Center stores the received SMS message and forwards it to the CoAP Server, using an SMS-DELIVER message. The CoAP Client address is specified as a TP Originating Address (see <a href="#ts23_040">[ts23_040]</a>).</p>
+<p id="rfc.section.5.1.p.6">Step 4: The CoAP Server returns an SMS-DELIVER-REPORT message to the Service Center.</p>
+<p id="rfc.section.5.1.p.7">Step 5: The Service Center returns the SMS-STATUS-REPORT message to the CoAP Client to indicate the SMS delivery status, if required by the CoAP Client.</p>
+<p id="rfc.section.5.1.p.8">Note that the SMS-STATUS-REPORT message just indicates the transport layer SMS delivery status and has no relationship with the confirmable message or non-confirmable message. If the CoAP Client has sent a confirmable message, the CoAP Server MUST use a separate SMS message to transmit the ACK.</p>
+<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#sms_encoding" id="sms_encoding">Encoding Schemes of CoAP for SMS transport</a></h1>
+<p id="rfc.section.6.p.1">Short messages can be encoded by using various alphabets: GSM 7 bit default alphabet (<a href="#ts23_038">[ts23_038]</a>), 8 bit data alphabet, and 16 bit UCS2 data alphabet (<a href="#iso_ucs2">[iso_ucs2]</a>). These encodings lead to message sizes of 160, 140, and 70 characters, respectively. Whereas the support of 7 bit encoding is mandatory on a MS, the two other encodings are dependent on the language that needs to be encoded, e.g. UCS2 for Arabic, Chinese, Japanese, etc.  Furthermore, the supported encoding highly depends on the implementations of the MS itself.</p>
+<p id="rfc.section.6.p.2">According to <a href="#ts23_038">[ts23_038]</a>, GSM 7 bit encoding shall be supported by all MSs offering SMS services. Since not all MSs support 8 bit short message encoding, the preferred encoding scheme for CoAP messages over SMS is therefore 7 bit, e.g. Base64 (<a href="#RFC4648">[RFC4648]</a>) or SMS encoding in <a href="#smsenc">Appendix A.1</a>.</p>
+<p id="rfc.section.6.p.3">More considerations about SMS encoding can be found in <a href="#encode">Appendix A</a>.</p>
+<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#message-size-implementation-considerations" id="message-size-implementation-considerations">Message Size Implementation Considerations</a></h1>
+<p id="rfc.section.7.p.1">By using 7 bit encoding, a maximum length of 160 characters is allowed in one short message <a href="#ts23_038">[ts23_038]</a>. Consequently, the maximum length for a CoAP message results in 140 bytes. 160 characters = (140 bytes * 8)/7.</p>
+<p id="rfc.section.7.p.2">Possible options for larger CoAP messages are:</p>
+<p/>
+
+<dl>
+  <dt>Concatenated short messages</dt>
+  <dd style="margin-left: 8"><br/> Most MSs are able to send concatenation short messages in order to transmit longer messages. The total length of a concatenated short message can consist of up to 255 single messages and result in total length of 39015 7 bit characters or 34170 bytes. Resulting from this, the maximum length of each individual message reduces to 153 (160 - 7) characters (133 bytes).</dd>
+</dl>
+<p/>
+
+<dl>
+  <dt>CoAP block-wise transfer</dt>
+  <dd style="margin-left: 8"><br/> According to <a href="#RFC7959">[RFC7959]</a>, the Block Size (SZX) of block-wise transfer in CoAP is represented as a three-bit unsigned integer. Thus, the possible block sizes are to the power of two. (Block size = 2**(SZX + 4)).  Due to the limitations of 160 characters (140 bytes) for one short message, the maximum value of SZX is 3 (Block size = 128 byte).</dd>
+</dl>
+<p id="rfc.section.7.p.5">However, it is RECOMMENDED that SMS is not used to transfer very large resource data using block-wise transfer.</p>
+<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#addressing" id="addressing">Addressing</a></h1>
+<p id="rfc.section.8.p.1">For SMS in cellular networks, the CoAP endpoints have to work with a SIM (Subscriber Identity Module) card and have to be addressed by the MSISDN (Mobile Station ISDN (MSISDN) number).</p>
+<p id="rfc.section.8.p.2">To allow the CoAP client to detect that the short message contains a CoAP message, the TP-DATA-Coding-Scheme SHOULD be included.</p>
+<h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> <a href="#opt_uri" id="opt_uri">Options</a></h1>
+<h1 id="rfc.section.9.1"><a href="#rfc.section.9.1">9.1.</a> <a href="#options" id="options">New Options for mixed IP operation.</a></h1>
+<p id="rfc.section.9.1.p.1">In case a CoAP Server has more than one network interface, e.g. SMS and IP, the CoAP Client might want the server to send the response via an alternative transport, i.e. to it&#8217;s alternative address. However, that implies that the initiating CoAP Client is aware of the presence of the alternative interface. For this reason the new options Response-To-Uri-Host and Response-To-Uri-Port are proposed.</p>
+<div id="rfc.table.1"/>
+<div id="table_coap_option"/>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+  <caption>New CoAP Option Numbers</caption>
+  <thead>
+    <tr>
+      <th class="center">No.</th>
+      <th class="center">C</th>
+      <th class="center">U</th>
+      <th class="center">N</th>
+      <th class="center">R</th>
+      <th class="center">Name</th>
+      <th class="center">Format</th>
+      <th class="center">Length</th>
+      <th class="center">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="center">TBD</td>
+      <td class="center"/>
+      <td class="center"/>
+      <td class="center"/>
+      <td class="center"/>
+      <td class="center">Response-To- Uri-Host</td>
+      <td class="center">string</td>
+      <td class="center">1-270 B</td>
+      <td class="center">(none)</td>
+    </tr>
+    <tr>
+      <td class="center">TBD</td>
+      <td class="center"/>
+      <td class="center"/>
+      <td class="center"/>
+      <td class="center"/>
+      <td class="center">Response-To- Uri-Port</td>
+      <td class="center">uint</td>
+      <td class="center">0-2 B</td>
+      <td class="center">5683</td>
+    </tr>
+  </tbody>
+</table>
+<p id="rfc.section.9.1.p.2">If the Response-To-Uri-Host is present in the request, server MUST send the response to the indicated URI address, instead of the client&#8217;s original request URI.</p>
+<p id="rfc.section.9.1.p.3">The options SHOULD NOT be used in the response.</p>
+<p id="rfc.section.9.1.p.4">The options MUST NOT occur more than once.</p>
+<h1 id="rfc.section.10"><a href="#rfc.section.10">10.</a> <a href="#urischeme" id="urischeme">URI Scheme</a></h1>
+<p id="rfc.section.10.p.1">The coap:// scheme defines that a CoAP server is reachable over UDP/IP. Hence, a new URI scheme is needed for CoAP servers which are reachable over SMS.</p>
+<p id="rfc.section.10.p.2">As proposed in <a href="#I-D.silverajan-core-coap-alternative-transports">[I-D.silverajan-core-coap-alternative-transports]</a>, the transport information is expressed as part of the URI scheme component.  This is performed by minting new schemes for SMS transport using the form &#8220;coap+sms&#8221;, where the name of the transport is clearly and unambiguously described. The endpoint identifier, path and query components together with each scheme name would be used to uniquely identify each resource.</p>
+<p id="rfc.section.10.p.3">Example of such URI :</p>
+<p/>
+
+<ul>
+  <li>coap+sms://0015105550101/sensors/temperature</li>
+</ul>
+<p id="rfc.section.10.p.5">In the URI, 0015105550101 is a telephone subscriber number.</p>
+<h1 id="rfc.section.11"><a href="#rfc.section.11">11.</a> <a href="#transmission-parameters" id="transmission-parameters">Transmission Parameters</a></h1>
+<p id="rfc.section.11.p.1">It is RECOMMENDED to configure the RESPONSE_TIMEOUT variable for a higher duration than specified in <a href="#RFC7252">[RFC7252]</a> for the applications described here. The actual value SHOULD be chosen based on experience with SMS.</p>
+<h1 id="rfc.section.12"><a href="#rfc.section.12">12.</a> <a href="#multicast" id="multicast">Multicast</a></h1>
+<p id="rfc.section.12.p.1">Multicast is not possible with SMS transports.</p>
+<h1 id="rfc.section.13"><a href="#rfc.section.13">13.</a> <a href="#Security" id="Security">Security Considerations</a></h1>
+<p id="rfc.section.13.p.1">It is possible that a malicious CoAP Client sends repeated requests, and it may cost money for the CoAP Server to use SMS to send back associated responses. To avoid this situation, the CoAP Server implementation can authenticate the CoAP Client before responding to the requests. For example, the CoAP Server can maintain an MSISDN white list. Only the MSISDN specified in the white list will be allowed to send requests. The requests from others will be ignored or rejected.</p>
+<h1 id="rfc.section.14"><a href="#rfc.section.14">14.</a> <a href="#IANA" id="IANA">IANA Considerations</a></h1>
+<h1 id="rfc.section.14.1"><a href="#rfc.section.14.1">14.1.</a> <a href="#IANA_options" id="IANA_options">CoAP Option Number</a></h1>
+<p id="rfc.section.14.1.p.1">The IANA is requested to add the following option number entries to the CoAP Option Number Registry:</p>
+<pre>
+   +--------+----------------------+----------------------------+
+   | Number |       Name           | Reference                  |
+   +--------+----------------------+----------------------------+
+   |  TBD   | Response-To-Uri-Host | Section 2 of this document |
+   +--------+----------------------+----------------------------+
+   |  TBD   | Response-To-Uri-Port | Section 2 of this document |
+   +--------+----------------------+----------------------------+
+</pre>
+<h1 id="rfc.section.14.2"><a href="#rfc.section.14.2">14.2.</a> <a href="#IANA_scheme" id="IANA_scheme">URI Scheme Registration</a></h1>
+<p id="rfc.section.14.2.p.1">According to <a href="#I-D.silverajan-core-coap-alternative-transports">[I-D.silverajan-core-coap-alternative-transports]</a> this document requests the registration of the Uniform Resource Identifier (URI) scheme &#8220;coap+sms&#8221;.  The registration request complies with <a href="#RFC7595">[RFC7595]</a>.  </p>
+<h1 id="rfc.references"><a href="#rfc.references">15.</a> References</h1>
+<h1 id="rfc.references.1"><a href="#rfc.references.1">15.1.</a> Normative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="etsi_ts101_748">[etsi_ts101_748]</b>
+      </td>
+      <td class="top"><a>ETSI</a>, "<a>Technical Report: Digital cellular telecommunications system; Abbreviations and acronyms (GSM 01.04 version 8.0.0 release 1999)</a>", 2000.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="iso_ucs2">[iso_ucs2]</b>
+      </td>
+      <td class="top"><a>ISO</a>, "<a>ISO/IEC10646: "Universal Multiple-Octet Coded Character Set (UCS)"; UCS2, 16 bit coding.</a>", 2000.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC2119">[RFC2119]</b>
+      </td>
+      <td class="top"><a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4648">[RFC4648]</b>
+      </td>
+      <td class="top"><a>Josefsson, S.</a>, "<a href="http://tools.ietf.org/html/rfc4648">The Base16, Base32, and Base64 Data Encodings</a>", RFC 4648, DOI 10.17487/RFC4648, October 2006.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7252">[RFC7252]</b>
+      </td>
+      <td class="top"><a>Shelby, Z.</a>, <a>Hartke, K.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/rfc7252">The Constrained Application Protocol (CoAP)</a>", RFC 7252, DOI 10.17487/RFC7252, June 2014.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7595">[RFC7595]</b>
+      </td>
+      <td class="top"><a>Thaler, D.</a>, <a>Hansen, T.</a> and <a>T. Hardie</a>, "<a href="http://tools.ietf.org/html/rfc7595">Guidelines and Registration Procedures for URI Schemes</a>", BCP 35, RFC 7595, DOI 10.17487/RFC7595, June 2015.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7959">[RFC7959]</b>
+      </td>
+      <td class="top"><a>Bormann, C.</a> and <a>Z. Shelby</a>, "<a href="http://tools.ietf.org/html/rfc7959">Block-Wise Transfers in the Constrained Application Protocol (CoAP)</a>", RFC 7959, DOI 10.17487/RFC7959, August 2016.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="ts23_038">[ts23_038]</b>
+      </td>
+      <td class="top"><a>ETSI 3GPP</a>, "<a>Technical Specification: Alphabets and language-specific information (3GPP TS 23.038 version 11.0.0 Release 11)</a>", 2012.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.references.2"><a href="#rfc.references.2">15.2.</a> Informative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="cimd">[cimd]</b>
+      </td>
+      <td class="top"><a>Nokia</a>, "<a>CIMD Interface Specification (SMSCDOC8000.00, Nokia SMS Center 8.0)</a>", 2005.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="I-D.silverajan-core-coap-alternative-transports">[I-D.silverajan-core-coap-alternative-transports]</b>
+      </td>
+      <td class="top"><a>Silverajan, B.</a> and <a>T. Savolainen</a>, "<a href="http://tools.ietf.org/html/draft-silverajan-core-coap-alternative-transports-09">CoAP Communication with Alternative Transports</a>", Internet-Draft draft-silverajan-core-coap-alternative-transports-09, December 2015.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="oma_lightweightm2m_ts">[oma_lightweightm2m_ts]</b>
+      </td>
+      <td class="top"><a>OMA</a>, "<a>Lightweight Machine to Machine Technical Specification</a>", 2013.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC1924">[RFC1924]</b>
+      </td>
+      <td class="top"><a>Elz, R.</a>, "<a href="http://tools.ietf.org/html/rfc1924">A Compact Representation of IPv6 Addresses</a>", RFC 1924, DOI 10.17487/RFC1924, April 1996.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="smpp">[smpp]</b>
+      </td>
+      <td class="top"><a>SMPP Developers Forum</a>, "<a>Short Message Peer to Peer Protocol Specification v3.4 Issue 1.2</a>", 1999.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="ts23_040">[ts23_040]</b>
+      </td>
+      <td class="top"><a>3GPP</a>, "<a>Technical realization of the Short Message Service (SMS)</a>", 3GPP-23.040 a00, March 2011.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="ts23_682">[ts23_682]</b>
+      </td>
+      <td class="top"><a>ETSI 3GPP</a>, "<a>Technical Specification Group Services and System Aspects; Architecture Enhancements to facilitate communications with Packet Data Networks and Applications; (Release 11)</a>", 2012.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="ts23_888">[ts23_888]</b>
+      </td>
+      <td class="top"><a>ETSI 3GPP</a>, "<a>Technical Specification Group Services and System Aspects; System Improvements for Machine-Type Communications; (3GPP TR 23.888 version 1.6.0, Release 11)</a>", 2011.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="ucp">[ucp]</b>
+      </td>
+      <td class="top"><a>Vodafone</a>, "<a>Short Message Service Centre (SMSC) External Machine Interface (EMI) Description Version 4.3d</a>", 2011.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> <a href="#encode" id="encode">SMS encoding</a></h1>
+<p id="rfc.section.A.p.1">For use in SMS applications, CoAP messages can be transferred using SMS binary mode.  However, there is operational experience showing that some environments cannot successfully send a binary mode SMS.</p>
+<p id="rfc.section.A.p.2">For transferring SMS in character mode (7-bit characters), base64-encoding <a href="#RFC4648">[RFC4648]</a> is an obvious choice.  3 bytes of message (24 bits) turn into 4 characters, which consume 28 bits.  The overall overhead is approximately 17&#160;%; the maximum message size is 120 bytes (160 SMS characters).</p>
+<p id="rfc.section.A.p.3">If a more compact encoding is desired, base85 encoding could be employed (however, probably not the version defined in <a href="#RFC1924">[RFC1924]</a> &#8212; instead, the version used in tools such as btoa and PDF should be chosen).  However, this requires division operations.  Also, the base85 character set includes several characters that cannot be transferred in a single 7-bit unit in SMS and/or are known to cause operational problems.  A modified base85 character set can be defined to solve the latter problem.  4 bytes of message (32 bits) turn into 5 characters, which consume 35 bits.  The overall overhead is approximately 9.3&#160;%; the resulting maximum message size is 128 bytes (160 SMS characters).</p>
+<p id="rfc.section.A.p.4">Base64 and base85 do not make use of the fact that much CoAP data will be ASCII-based.  Therefore, we define the following ASCII-optimized SMS encoding.</p>
+<h1 id="rfc.appendix.A.1"><a href="#rfc.appendix.A.1">A.1.</a> <a href="#smsenc" id="smsenc">ASCII-optimized SMS encoding</a></h1>
+<p id="rfc.section.A.1.p.1">Not all 128 theoretically possible SMS characters are operationally free of problems.  We therefore define:</p>
+<p/>
+
+<dl>
+  <dt>Shunned code characters:</dt>
+  <dd style="margin-left: 8">@ sign, as it maps to 0x00</dd>
+  <dt></dt>
+  <dd style="margin-left: 8">LF and CR signs (0x0A, 0x0D)</dd>
+  <dt></dt>
+  <dd style="margin-left: 8">uppercase C cedilla (0x09), as it is often mistranslated in gateways</dd>
+  <dt></dt>
+  <dd style="margin-left: 8">ESC (0x1B), as it is used in certain character combinations only</dd>
+</dl>
+<p id="rfc.section.A.1.p.3">Some ASCII characters cannot be transferred in the base SMS character set, as their code positions are taken by non-ASCII characters.  These are simply encoded with their ASCII code positions, e.g., an underscore becomes a section mark (even though underscore has a different code position in the SMS character set).</p>
+<p/>
+
+<dl>
+  <dt>Equivalently translated input bytes:</dt>
+  <dd style="margin-left: 8">$, @, [, \, ], ^, _, `, {, |, }, ~, DEL</dd>
+</dl>
+<p id="rfc.section.A.1.p.5">In other words, bytes 0x20 to 0x7F are encoded into the same code positions in the 7-bit character set.</p>
+<p id="rfc.section.A.1.p.6">Out of the remaining code characters, the following SMS characters are available for encoding:</p>
+<p/>
+
+<dl>
+  <dt>Non-equivalently translated (NET) code characters:</dt>
+  <dd style="margin-left: 8">0x01 to 0x08, (8 characters)</dd>
+  <dt></dt>
+  <dd style="margin-left: 8">0x0B, 0x0C, (2 characters)</dd>
+  <dt></dt>
+  <dd style="margin-left: 8">0x0E to 0x1A, (13 characters)</dd>
+  <dt></dt>
+  <dd style="margin-left: 8">0x1C to 0x1F, (4 characters)</dd>
+</dl>
+<p id="rfc.section.A.1.p.8">Of the 27 NET code characters, 18 are taken as prefix characters (see below), and 8 are defined as directly translated characters:</p>
+<p/>
+
+<dl>
+  <dt>Directly translated bytes:</dt>
+  <dd style="margin-left: 8">Equivalently translated input bytes are represented as themselves</dd>
+  <dt></dt>
+  <dd style="margin-left: 8">0x00 to 0x07 are represented as 0x01 to 0x08</dd>
+</dl>
+<p id="rfc.section.A.1.p.10">This leaves 0x08 to 0x1F and 0x80 to 0xFF.  Of these, the bytes 0x80 to 0x87 and 0xA0 to 0xFF are represented as the bytes 0x00 to 0x07 (represented by characters 0x01 to 0x08) and 0x20 to 0x7F, with a prefix of 1 (see below).  The characters 0x08 to 0x1F are represented as the characters 0x28 to 0x3F with a prefix of 2 (see below).  The characters 0x88 to 0x9F are represented as the characters 0x48 to 0x5F with a prefix of 2 (see below).  (Characters 0x01 to 0x08, 0x20 to 0x27, 0x40 to 0x47, and 0x60 to 0x7f with a prefix of 2 are reserved for future extensions, which could be used for some backreferencing or run-length compression.)</p>
+<p id="rfc.section.A.1.p.11">Bytes that do not need a prefix (directly translated bytes) are sent as is.  Any byte that does need a prefix (i.e., 1 or 2) is preceded by a prefix character, which provides a prefix for this and the following two bytes as follows:</p>
+<div id="rfc.table.2"/>
+<div id="prefixchars"/>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+  <caption>SMS prefix character assignment</caption>
+  <thead>
+    <tr>
+      <th class="left">char</th>
+      <th class="left">pfx</th>
+      <th class="left">.</th>
+      <th class="left">char</th>
+      <th class="left">pfx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="left">0x0B</td>
+      <td class="left">100</td>
+      <td class="left">.</td>
+      <td class="left">0x15</td>
+      <td class="left">200</td>
+    </tr>
+    <tr>
+      <td class="left">0x0C</td>
+      <td class="left">101</td>
+      <td class="left">.</td>
+      <td class="left">0x16</td>
+      <td class="left">201</td>
+    </tr>
+    <tr>
+      <td class="left">0x0E</td>
+      <td class="left">102</td>
+      <td class="left">.</td>
+      <td class="left">0x17</td>
+      <td class="left">202</td>
+    </tr>
+    <tr>
+      <td class="left">0x0F</td>
+      <td class="left">110</td>
+      <td class="left">.</td>
+      <td class="left">0x18</td>
+      <td class="left">210</td>
+    </tr>
+    <tr>
+      <td class="left">0x10</td>
+      <td class="left">111</td>
+      <td class="left">.</td>
+      <td class="left">0x19</td>
+      <td class="left">211</td>
+    </tr>
+    <tr>
+      <td class="left">0x11</td>
+      <td class="left">112</td>
+      <td class="left">.</td>
+      <td class="left">0x1A</td>
+      <td class="left">212</td>
+    </tr>
+    <tr>
+      <td class="left">0x12</td>
+      <td class="left">120</td>
+      <td class="left">.</td>
+      <td class="left">0x1C</td>
+      <td class="left">220</td>
+    </tr>
+    <tr>
+      <td class="left">0x13</td>
+      <td class="left">121</td>
+      <td class="left">.</td>
+      <td class="left">0x1D</td>
+      <td class="left">221</td>
+    </tr>
+    <tr>
+      <td class="left">0x14</td>
+      <td class="left">122</td>
+      <td class="left">.</td>
+      <td class="left">0x1E</td>
+      <td class="left">222</td>
+    </tr>
+  </tbody>
+</table>
+<p id="rfc.section.A.1.p.12">(This leaves one non-shunned character, 0x1F, for future extension.)</p>
+<p id="rfc.section.A.1.p.13">The coding overhead of this encoding for random bytes is similar to Base85, without the need for a division/multiplication.  For bytes that are mostly ASCII characters, the overhead can easily become negative.  (Conversely, for bytes that for some reason are more likely to be non-ASCII than in a random sequence of bytes, the overhead becomes greater.)</p>
+<p id="rfc.section.A.1.p.14">So, for instance, for the CoAP message in <a href="#coapdump">Figure 7</a>:</p>
+<div id="rfc.figure.7"/>
+<div id="coapdump"/>
+<pre>
+ver     tt      code    mid
+1       ack     2.05    17033
+content_type    40
+token           sometok
+3c 2f 3e 3b 74 69 74 6c 65 3d 22 47 65 6e 65 72  |&lt;/&gt;;title="Gener|
+61 6c 20 49 6e 66 6f 22 3b 63 74 3d 30 2c 3c 2f  |al Info";ct=0,&lt;/|
+74 69 6d 65 3e 3b 69 66 3d 22 63 6c 6f 63 6b 22  |time&gt;;if="clock"|
+3b 72 74 3d 22 54 69 63 6b 73 22 3b 74 69 74 6c  |;rt="Ticks";titl|
+65 3d 22 49 6e 74 65 72 6e 61 6c 20 43 6c 6f 63  |e="Internal Cloc|
+6b 22 3b 63 74 3d 30 2c 3c 2f 61 73 79 6e 63 3e  |k";ct=0,&lt;/async&gt;|
+3b 63 74 3d 30                                   |;ct=0           |
+</pre>
+<p class="figure">Figure 7: CoAP response message as captured and decoded</p>
+<p id="rfc.section.A.1.p.15">The 116 byte unencoded message is shown as ASCII characters in <a href="#coapdump1">Figure 8</a> (\xDD stands for the byte with the hex digits DD):</p>
+<div id="rfc.figure.8"/>
+<div id="coapdump1"/>
+<pre>
+bEB\x89\x11(\xA7sometok&lt;/&gt;;title="General Info";ct=0,&lt;/time&gt;
+;if="clock";rt="Ticks";title="Internal Clock";ct=0,&lt;/async&gt;;ct=0
+</pre>
+<p class="figure">Figure 8: CoAP response message shown as unencoded characters</p>
+<p id="rfc.section.A.1.p.16">The only non-ASCII characters in this example are in the beginning of the message.  According to the translation instructions above, the four bytes:</p>
+<pre>
+89 11 (  A7
+</pre>
+<p id="rfc.section.A.1.p.17">need the prefixes:</p>
+<pre>
+2  2  0  1
+</pre>
+<p id="rfc.section.A.1.p.18">As each prefix character always covers three unencoded bytes, we need the prefix characters for 220 and 100, which are \x1C and \x0B, respectively (<a href="#prefixchars">Table 2</a>).</p>
+<p id="rfc.section.A.1.p.19">The equivalent SMS encoding is shown as equivalent-coded SMS characters in <a href="#coapdump2">Figure 9</a> (7 bits per character, \x1C is the 220 prefix and \x0B is the 100 prefix, the rest is shown in equivalent encoding), adding two characters of prefix overhead, for a total length of 118 7-bit characters or 104 (103.25 plus padding) bytes:</p>
+<div id="rfc.figure.9"/>
+<div id="coapdump2"/>
+<pre>
+bEB\x1CI1(\x0B'sometok&lt;/&gt;;title="General Info";ct=0,&lt;/time&gt;
+;if="clock";rt="Ticks";title="Internal Clock";ct=0,&lt;/async&gt;;ct=0
+</pre>
+<p class="figure">Figure 9: CoAP response message shown as SMS-encoded characters</p>
+<h1 id="rfc.appendix.B"><a href="#rfc.appendix.B">Appendix B.</a> <a href="#app-additional" id="app-additional">Changelog</a></h1>
+<p id="rfc.section.B.p.1">RFC editor: please remove this appendix.</p>
+<p id="rfc.section.B.p.2">Changed from draft-05 to draft-06:</p>
+<p/>
+
+<ul>
+  <li>Update references and addresses</li>
+  <li>Integrate relevant text from coap-misc as an appendix.</li>
+</ul>
+<p id="rfc.section.B.p.4">Changed from draft-04 to draft-05:</p>
+<p/>
+
+<ul>
+  <li>Removed reference to USSD.</li>
+  <li>Updated reference to RFC7252 and 3GPP specs.</li>
+  <li>Updated Options.</li>
+  <li>Adapted URI scheme.</li>
+</ul>
+<p id="rfc.section.B.p.6">Changed from draft-03 to draft-04:</p>
+<p/>
+
+<ul>
+  <li>Removed USSD and GPRS related parts.</li>
+  <li>Removed section 5: Examples</li>
+  <li>Removed section 14: Proxying Considerations</li>
+  <li>Added more block size considerations.</li>
+  <li>Added more concatenated SMS considerations.</li>
+  <li>Rewrote encoding scheme section; 7 bit encoding only.</li>
+</ul>
+<p id="rfc.section.B.p.8">Changed from draft-02 to draft-03:</p>
+<p/>
+
+<ul>
+  <li>Added reference to OMA LightweightM2M Technical Specification in &#8220;Motivation&#8221; section.</li>
+  <li>Chose CoAP option numbers and updated the option number table to meet draft-ietf-core-coap-13.</li>
+</ul>
+<p id="rfc.section.B.p.10">Changed from draft-01 to draft-02:</p>
+<p/>
+
+<ul>
+  <li>Added security considerations: Transport and Object Security. <a href="#Security">Section 13</a></li>
+  <li>Reply-To-* changed to Response-To-*. <a href="#IANA">Section 14</a> </li>
+  <li>Added URI scheme.</li>
+  <li>Added possible CON/NON/ACK interactions.</li>
+  <li>Added possible M2M proxy scenarios.</li>
+  <li>Added reference to bormann-coap-misc for other SMS encoding. <a href="#sms_encoding">Section 6</a></li>
+  <li>Updated requirements on Uri-Host and Uri-Port for coap+tel://.</li>
+  <li>Chose CoAP option numbers and updated the option number table to meet draft-ietf-core-coap-10.  /&gt;</li>
+  <li>Added an IANA registration for the URI scheme. <a href="#IANA_scheme">Section 14.2</a></li>
+</ul>
+<h1 id="rfc.acknowledgements">
+  <a href="#rfc.acknowledgements">Acknowledgements</a>
+</h1>
+<p id="rfc.section.C.p.1">This document is partly based on research for the research project &#8216;The Intelligent Container&#8217; which is supported by the Federal Ministry of Education and Research, Germany, under reference number 01IA10001.</p>
+<p id="rfc.section.C.p.2">The authors of this draft would like to thank Bert Greevenbosch, Marcus G&#246;tting, Nils Schulte and Klaus Hartke for the discussions on the topic and the reviews of this document.</p>
+<h1 id="rfc.contributors">
+  <a href="#rfc.contributors">Contributors</a>
+</h1>
+<p><a href="#encode">Appendix A</a> has been contributed by Carsten Bormann.</p>
+<pre>
+Carsten Bormann
+Universitaet Bremen TZI
+Postfach 330440
+Bremen  D-28359
+Germany
+
+Phone: +49-421-218-63921
+EMail: cabo@tzi.org
+</pre>
+<h1 id="rfc.authors">
+  <a href="#rfc.authors">Authors' Addresses</a>
+</h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Markus Becker</span> (editor)
+	  <span class="n hidden">
+		<span class="family-name">Becker</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Tridonic GmbH & Co KG</span>
+	<span class="adr">
+	  <span class="vcardline">F&#228;rbergasse 15</span>
+
+	  <span class="vcardline">
+		<span class="locality">Dornbirn</span>,  
+		<span class="region"></span>
+		<span class="code">6851</span>
+	  </span>
+	  <span class="country-name vcardline">Austria</span>
+	</span>
+	<span class="vcardline">Phone: +43 5572 395 45637</span>
+
+<span class="vcardline">EMail: <a href="mailto:markus.becker@tridonic.com">markus.becker@tridonic.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Kepeng LI</span> 
+	  <span class="n hidden">
+		<span class="family-name">Li</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Alibaba Group</span>
+	<span class="adr">
+	  <span class="vcardline">Wenyixi Road, Yuhang District</span>
+
+	  <span class="vcardline">
+		<span class="locality">Hangzhou</span>,  
+		<span class="region">Zhejiang</span> 
+		<span class="code">311121</span>
+	  </span>
+	  <span class="country-name vcardline">China</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:kepeng.lkp@alibaba-inc.com">kepeng.lkp@alibaba-inc.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Koojana Kuladinithi</span> 
+	  <span class="n hidden">
+		<span class="family-name">Kuladinithi</span>
+	  </span>
+	</span>
+	<span class="org vcardline">ComNets, Hamburg University of Technology</span>
+	<span class="adr">
+	  <span class="vcardline">Am Schwarzenberg-Campus 3</span>
+
+	  <span class="vcardline">
+		<span class="locality">Hamburg</span>,  
+		<span class="region"></span>
+		<span class="code">21073</span>
+	  </span>
+	  <span class="country-name vcardline">Germany</span>
+	</span>
+	<span class="vcardline">Phone: +49 40 428 783533</span>
+
+<span class="vcardline">EMail: <a href="mailto:koojana.kuladinithi@tuhh.de">koojana.kuladinithi@tuhh.de</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Thomas P&#246;tsch</span> 
+	  <span class="n hidden">
+		<span class="family-name">P&#246;tsch</span>
+	  </span>
+	</span>
+	<span class="org vcardline">New York University Abu Dhabi</span>
+	<span class="adr">
+	  <span class="vcardline">P.O. Box 129188</span>
+
+	  <span class="vcardline">
+		<span class="locality">Abu Dhabi</span>,  
+		<span class="region"></span>
+		<span class="code">129188</span>
+	  </span>
+	  <span class="country-name vcardline">United Arab Emirates</span>
+	</span>
+	<span class="vcardline">Phone: +971 2 628 5069</span>
+
+<span class="vcardline">EMail: <a href="mailto:thomas.poetsch@nyu.edu">thomas.poetsch@nyu.edu</a></span>
+
+  </address>
+</div>
+
+  <div class="github-fork-ribbon-wrapper"><div class="github-fork-ribbon"><a href="https://github.com/core-wg/sms">Fork me on GitHub</a></div></div>
+</body>
+</html>
