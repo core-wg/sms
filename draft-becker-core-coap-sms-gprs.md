@@ -19,7 +19,16 @@ kw: CoAP, SMS, M2M
 date: 2017-01-24
 author:
 - role: editor
-  ins: M. Becker
+  ins: K. Kuladinithi
+  name: Koojana Kuladinithi
+  org: ComNets, Hamburg University of Technology
+  street: Am Schwarzenberg-Campus 3
+  code: '21073'
+  city: Hamburg
+  country: Germany
+  phone: "+49 40 428 783533"
+  email: koojana.kuladinithi@tuhh.de
+- ins: M. Becker
   name: Markus Becker
   org: Tridonic GmbH & Co KG
   street: Färbergasse 15
@@ -38,15 +47,6 @@ author:
   code: '311121'
   country: China
   email: kepeng.lkp@alibaba-inc.com
-- ins: K. Kuladinithi
-  name: Koojana Kuladinithi
-  org: ComNets, Hamburg University of Technology
-  street: Am Schwarzenberg-Campus 3
-  code: '21073'
-  city: Hamburg
-  country: Germany
-  phone: "+49 40 428 783533"
-  email: koojana.kuladinithi@tuhh.de
 - ins: T. Pötsch
   name: Thomas Pötsch
   org: New York University Abu Dhabi
@@ -184,7 +184,7 @@ identified as an alternative transport for CoAP messages.
 
 
 
-# Terminology
+## Terminology
 
 This document uses the following terminology:
 
@@ -200,7 +200,7 @@ Mobile Station (MS)
   for communication with a mobile network. As defined in {{etsi_ts101_748}}.
 
 
-# Requirements Language
+## Requirements Language
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
@@ -717,6 +717,8 @@ Changed from draft-05 to draft-06:
 * Update references and addresses
 
 * Integrate relevant text from coap-misc as an appendix.
+
+* Section 2 & 3 are merged to section 1
 
 
 Changed from draft-04 to draft-05:
