@@ -2,12 +2,12 @@
 
 
 
-CoRE                                                      M. Becker, Ed.
-Internet-Draft                                     Tridonic GmbH & Co KG
-Intended status: Standards Track                                   K. Li
-Expires: July 28, 2017                                     Alibaba Group
-                                                          K. Kuladinithi
-                               ComNets, Hamburg University of Technology
+CoRE                                                 K. Kuladinithi, Ed.
+Internet-Draft                 ComNets, Hamburg University of Technology
+Intended status: Standards Track                               M. Becker
+Expires: July 28, 2017                             Tridonic GmbH & Co KG
+                                                                   K. Li
+                                                           Alibaba Group
                                                               T. Poetsch
                                            New York University Abu Dhabi
                                                         January 24, 2017
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 1]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 1]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -72,30 +72,30 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
      1.1.  Motivation  . . . . . . . . . . . . . . . . . . . . . . .   3
-   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
-   3.  Requirements Language . . . . . . . . . . . . . . . . . . . .   4
-   4.  Scenarios . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     4.1.  MO-MT Scenarios . . . . . . . . . . . . . . . . . . . . .   4
-     4.2.  MT Scenarios  . . . . . . . . . . . . . . . . . . . . . .   4
-     4.3.  MO Scenarios  . . . . . . . . . . . . . . . . . . . . . .   5
-   5.  Message Exchanges . . . . . . . . . . . . . . . . . . . . . .   6
-     5.1.  Message Exchange for SMS in a Cellular-To-Cellular
+     1.2.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   3
+     1.3.  Requirements Language . . . . . . . . . . . . . . . . . .   4
+   2.  Scenarios . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.1.  MO-MT Scenarios . . . . . . . . . . . . . . . . . . . . .   4
+     2.2.  MT Scenarios  . . . . . . . . . . . . . . . . . . . . . .   4
+     2.3.  MO Scenarios  . . . . . . . . . . . . . . . . . . . . . .   5
+   3.  Message Exchanges . . . . . . . . . . . . . . . . . . . . . .   6
+     3.1.  Message Exchange for SMS in a Cellular-To-Cellular
            Mobile-Originated and Mobile-Terminated Scenario  . . . .   6
-   6.  Encoding Schemes of CoAP for SMS transport  . . . . . . . . .   7
-   7.  Message Size Implementation Considerations  . . . . . . . . .   7
-   8.  Addressing  . . . . . . . . . . . . . . . . . . . . . . . . .   8
-   9.  Options . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     9.1.  New Options for mixed IP operation. . . . . . . . . . . .   8
-   10. URI Scheme  . . . . . . . . . . . . . . . . . . . . . . . . .   9
-   11. Transmission Parameters . . . . . . . . . . . . . . . . . . .   9
-   12. Multicast . . . . . . . . . . . . . . . . . . . . . . . . . .   9
-   13. Security Considerations . . . . . . . . . . . . . . . . . . .   9
-   14. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
-     14.1.  CoAP Option Number . . . . . . . . . . . . . . . . . . .  10
-     14.2.  URI Scheme Registration  . . . . . . . . . . . . . . . .  10
-   15. References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
-     15.1.  Normative References . . . . . . . . . . . . . . . . . .  10
-     15.2.  Informative References . . . . . . . . . . . . . . . . .  11
+   4.  Encoding Schemes of CoAP for SMS transport  . . . . . . . . .   7
+   5.  Message Size Implementation Considerations  . . . . . . . . .   7
+   6.  Addressing  . . . . . . . . . . . . . . . . . . . . . . . . .   8
+   7.  Options . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+     7.1.  New Options for mixed IP operation. . . . . . . . . . . .   8
+   8.  URI Scheme  . . . . . . . . . . . . . . . . . . . . . . . . .   9
+   9.  Transmission Parameters . . . . . . . . . . . . . . . . . . .   9
+   10. Multicast . . . . . . . . . . . . . . . . . . . . . . . . . .   9
+   11. Security Considerations . . . . . . . . . . . . . . . . . . .   9
+   12. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
+     12.1.  CoAP Option Number . . . . . . . . . . . . . . . . . . .  10
+     12.2.  URI Scheme Registration  . . . . . . . . . . . . . . . .  10
+   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     13.1.  Normative References . . . . . . . . . . . . . . . . . .  10
+     13.2.  Informative References . . . . . . . . . . . . . . . . .  11
    Appendix A.  SMS encoding . . . . . . . . . . . . . . . . . . . .  12
      A.1.  ASCII-optimized SMS encoding  . . . . . . . . . . . . . .  12
    Appendix B.  Changelog  . . . . . . . . . . . . . . . . . . . . .  16
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 2]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 2]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -146,7 +146,7 @@ Internet-Draft                CoAP over SMS                 January 2017
    [oma_lightweightm2m_ts], SMS is identified as an alternative
    transport for CoAP messages.
 
-2.  Terminology
+1.2.  Terminology
 
    This document uses the following terminology:
 
@@ -165,18 +165,18 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 3]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 3]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
 
-3.  Requirements Language
+1.3.  Requirements Language
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
 
-4.  Scenarios
+2.  Scenarios
 
    Several scenarios are presented first for M2M communications with
    CoAP over SMS.  First Mobile-Originating Mobile-Terminating (MO-MT)
@@ -186,7 +186,7 @@ Internet-Draft                CoAP over SMS                 January 2017
    Finally, Mobile-Originating (MO) scenarios where the CoAP client is
    in the cellular network.
 
-4.1.  MO-MT Scenarios
+2.1.  MO-MT Scenarios
 
    Two mobile cellular terminals communicate by exchanging a CoAP
    Request and Response embedded into short message protocol data units
@@ -202,7 +202,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
       Figure 1: Cellular and Cellular Communication (only SMS-based)
 
-4.2.  MT Scenarios
+2.2.  MT Scenarios
 
    An IP host and a mobile cellular terminal communicate by exchanging
    CoAP Request and Response.  The IP host uses protocols offered by the
@@ -221,7 +221,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 4]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 4]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -249,7 +249,7 @@ Internet-Draft                CoAP over SMS                 January 2017
        Figure 3: IP and Cellular Communication (using an SMS Service
                                  Provider)
 
-4.3.  MO Scenarios
+2.3.  MO Scenarios
 
    A mobile cellular terminal and an IP host communicate by exchanging
    CoAP Request and Response.  The mobile cellular terminal sends a CoAP
@@ -277,7 +277,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 5]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 5]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -293,9 +293,9 @@ Internet-Draft                CoAP over SMS                 January 2017
        Figure 5: IP and Cellular Communication (using an SMS Service
                                  Provider)
 
-5.  Message Exchanges
+3.  Message Exchanges
 
-5.1.  Message Exchange for SMS in a Cellular-To-Cellular Mobile-
+3.1.  Message Exchange for SMS in a Cellular-To-Cellular Mobile-
       Originated and Mobile-Terminated Scenario
 
    The CoAP Client works as a Mobile Station to send the short message,
@@ -333,7 +333,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 6]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 6]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -354,7 +354,7 @@ Internet-Draft                CoAP over SMS                 January 2017
    has sent a confirmable message, the CoAP Server MUST use a separate
    SMS message to transmit the ACK.
 
-6.  Encoding Schemes of CoAP for SMS transport
+4.  Encoding Schemes of CoAP for SMS transport
 
    Short messages can be encoded by using various alphabets: GSM 7 bit
    default alphabet ([ts23_038]), 8 bit data alphabet, and 16 bit UCS2
@@ -373,7 +373,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
    More considerations about SMS encoding can be found in Appendix A.
 
-7.  Message Size Implementation Considerations
+5.  Message Size Implementation Considerations
 
    By using 7 bit encoding, a maximum length of 160 characters is
    allowed in one short message [ts23_038].  Consequently, the maximum
@@ -389,7 +389,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 7]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 7]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -409,7 +409,7 @@ Internet-Draft                CoAP over SMS                 January 2017
    However, it is RECOMMENDED that SMS is not used to transfer very
    large resource data using block-wise transfer.
 
-8.  Addressing
+6.  Addressing
 
    For SMS in cellular networks, the CoAP endpoints have to work with a
    SIM (Subscriber Identity Module) card and have to be addressed by the
@@ -418,9 +418,9 @@ Internet-Draft                CoAP over SMS                 January 2017
    To allow the CoAP client to detect that the short message contains a
    CoAP message, the TP-DATA-Coding-Scheme SHOULD be included.
 
-9.  Options
+7.  Options
 
-9.1.  New Options for mixed IP operation.
+7.1.  New Options for mixed IP operation.
 
    In case a CoAP Server has more than one network interface, e.g.  SMS
    and IP, the CoAP Client might want the server to send the response
@@ -445,7 +445,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 8]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 8]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -458,7 +458,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
    The options MUST NOT occur more than once.
 
-10.  URI Scheme
+8.  URI Scheme
 
    The coap:// scheme defines that a CoAP server is reachable over UDP/
    IP.  Hence, a new URI scheme is needed for CoAP servers which are
@@ -478,18 +478,18 @@ Internet-Draft                CoAP over SMS                 January 2017
 
    In the URI, 0015105550101 is a telephone subscriber number.
 
-11.  Transmission Parameters
+9.  Transmission Parameters
 
    It is RECOMMENDED to configure the RESPONSE_TIMEOUT variable for a
    higher duration than specified in [RFC7252] for the applications
    described here.  The actual value SHOULD be chosen based on
    experience with SMS.
 
-12.  Multicast
+10.  Multicast
 
    Multicast is not possible with SMS transports.
 
-13.  Security Considerations
+11.  Security Considerations
 
    It is possible that a malicious CoAP Client sends repeated requests,
    and it may cost money for the CoAP Server to use SMS to send back
@@ -501,7 +501,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                 [Page 9]
+Kuladinithi, et al.       Expires July 28, 2017                 [Page 9]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -509,9 +509,9 @@ Internet-Draft                CoAP over SMS                 January 2017
    allowed to send requests.  The requests from others will be ignored
    or rejected.
 
-14.  IANA Considerations
+12.  IANA Considerations
 
-14.1.  CoAP Option Number
+12.1.  CoAP Option Number
 
    The IANA is requested to add the following option number entries to
    the CoAP Option Number Registry:
@@ -524,16 +524,16 @@ Internet-Draft                CoAP over SMS                 January 2017
       |  TBD   | Response-To-Uri-Port | Section 2 of this document |
       +--------+----------------------+----------------------------+
 
-14.2.  URI Scheme Registration
+12.2.  URI Scheme Registration
 
    According to [I-D.silverajan-core-coap-alternative-transports] this
    document requests the registration of the Uniform Resource Identifier
    (URI) scheme "coap+sms".  The registration request complies with
    [RFC7595].
 
-15.  References
+13.  References
 
-15.1.  Normative References
+13.1.  Normative References
 
    [etsi_ts101_748]
               ETSI, "Technical Report: Digital cellular
@@ -557,7 +557,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                [Page 10]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 10]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -582,7 +582,7 @@ Internet-Draft                CoAP over SMS                 January 2017
               language-specific information (3GPP TS 23.038 version
               11.0.0 Release 11)", 2012.
 
-15.2.  Informative References
+13.2.  Informative References
 
    [cimd]     Nokia, "CIMD Interface Specification (SMSCDOC8000.00,
               Nokia SMS Center 8.0)", 2005.
@@ -613,7 +613,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                [Page 11]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 11]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -669,7 +669,7 @@ A.1.  ASCII-optimized SMS encoding
 
 
 
-Becker, et al.            Expires July 28, 2017                [Page 12]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 12]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -725,7 +725,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                [Page 13]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 13]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -781,7 +781,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                [Page 14]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 14]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -837,7 +837,7 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                [Page 15]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 15]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
@@ -851,6 +851,8 @@ Appendix B.  Changelog
    o  Update references and addresses
 
    o  Integrate relevant text from coap-misc as an appendix.
+
+   o  Section 2 & 3 are merged to section 1
 
    Changed from draft-04 to draft-05:
 
@@ -887,16 +889,16 @@ Appendix B.  Changelog
    Changed from draft-01 to draft-02:
 
    o  Added security considerations: Transport and Object Security.
-      Section 13
-
-   o  Reply-To-* changed to Response-To-*. Section 14
+      Section 11
 
 
 
-Becker, et al.            Expires July 28, 2017                [Page 16]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 16]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
+
+   o  Reply-To-* changed to Response-To-*. Section 12
 
    o  Added URI scheme.
 
@@ -905,14 +907,14 @@ Internet-Draft                CoAP over SMS                 January 2017
    o  Added possible M2M proxy scenarios.
 
    o  Added reference to bormann-coap-misc for other SMS encoding.
-      Section 6
+      Section 4
 
    o  Updated requirements on Uri-Host and Uri-Port for coap+tel://.
 
    o  Chose CoAP option numbers and updated the option number table to
       meet draft-ietf-core-coap-10.  />
 
-   o  Added an IANA registration for the URI scheme.  Section 14.2
+   o  Added an IANA registration for the URI scheme.  Section 12.2
 
 Acknowledgements
 
@@ -947,14 +949,22 @@ Authors' Addresses
 
 
 
-
-
-Becker, et al.            Expires July 28, 2017                [Page 17]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 17]
 
 Internet-Draft                CoAP over SMS                 January 2017
 
 
-   Markus Becker (editor)
+   Koojana Kuladinithi (editor)
+   ComNets, Hamburg University of Technology
+   Am Schwarzenberg-Campus 3
+   Hamburg  21073
+   Germany
+
+   Phone: +49 40 428 783533
+   Email: koojana.kuladinithi@tuhh.de
+
+
+   Markus Becker
    Tridonic GmbH & Co KG
    Faerbergasse 15
    Dornbirn  6851
@@ -971,16 +981,6 @@ Internet-Draft                CoAP over SMS                 January 2017
    China
 
    Email: kepeng.lkp@alibaba-inc.com
-
-
-   Koojana Kuladinithi
-   ComNets, Hamburg University of Technology
-   Am Schwarzenberg-Campus 3
-   Hamburg  21073
-   Germany
-
-   Phone: +49 40 428 783533
-   Email: koojana.kuladinithi@tuhh.de
 
 
    Thomas Poetsch
@@ -1005,4 +1005,4 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Becker, et al.            Expires July 28, 2017                [Page 18]
+Kuladinithi, et al.       Expires July 28, 2017                [Page 18]
