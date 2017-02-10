@@ -5,16 +5,16 @@
 CoRE                                                 K. Kuladinithi, Ed.
 Internet-Draft                 ComNets, Hamburg University of Technology
 Intended status: Standards Track                               M. Becker
-Expires: July 28, 2017                             Tridonic GmbH & Co KG
+Expires: August 17, 2017                           Tridonic GmbH & Co KG
                                                                    K. Li
                                                            Alibaba Group
                                                               T. Poetsch
                                            New York University Abu Dhabi
-                                                        January 24, 2017
+                                                       February 13, 2017
 
 
                        Transport of CoAP over SMS
-                 draft-becker-core-coap-sms-gprs-latest
+                   draft-becker-core-coap-sms-gprs-06
 
 Abstract
 
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 28, 2017.
+   This Internet-Draft will expire on August 17, 2017.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 1]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 1]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 2]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 2]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 3]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 3]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
 1.3.  Requirements Language
@@ -221,9 +221,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 4]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 4]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
                         CIMD               CoAP-REQ
@@ -277,9 +277,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 5]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 5]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
              CoAP-REQ             CIMD                HTTP-REQ
@@ -333,9 +333,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 6]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 6]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    CoAP Client address is specified as a TP Originating Address (see
@@ -389,9 +389,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 7]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 7]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
       in total length of 39015 7 bit characters or 34170 bytes.
@@ -445,9 +445,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 8]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 8]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    If the Response-To-Uri-Host is present in the request, server MUST
@@ -501,9 +501,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                 [Page 9]
+Kuladinithi, et al.      Expires August 17, 2017                [Page 9]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    allowed to send requests.  The requests from others will be ignored
@@ -557,9 +557,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 10]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 10]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
@@ -613,9 +613,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 11]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 11]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    [ts23_682]
@@ -669,9 +669,9 @@ A.1.  ASCII-optimized SMS encoding
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 12]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 12]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    Shunned code characters:  @ sign, as it maps to 0x00
@@ -725,9 +725,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 13]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 13]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    to 0x27, 0x40 to 0x47, and 0x60 to 0x7f with a prefix of 2 are
@@ -781,9 +781,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 14]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 14]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    ver     tt      code    mid
@@ -837,9 +837,9 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 15]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 15]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
 Appendix B.  Changelog
@@ -893,9 +893,9 @@ Appendix B.  Changelog
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 16]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 16]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    o  Reply-To-* changed to Response-To-*. Section 12
@@ -949,9 +949,9 @@ Authors' Addresses
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 17]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 17]
 
-Internet-Draft                CoAP over SMS                 January 2017
+Internet-Draft                CoAP over SMS                February 2017
 
 
    Koojana Kuladinithi (editor)
@@ -1005,4 +1005,4 @@ Internet-Draft                CoAP over SMS                 January 2017
 
 
 
-Kuladinithi, et al.       Expires July 28, 2017                [Page 18]
+Kuladinithi, et al.      Expires August 17, 2017               [Page 18]
