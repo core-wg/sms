@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-becker-core-coap-sms-gprs-latest
+docname: draft-becker-core-coap-sms-gprs-06
 cat: std
 pi:
   strict: 'no'
@@ -16,7 +16,7 @@ abbrev: CoAP over SMS
 area: Application
 wg: CoRE
 kw: CoAP, SMS, M2M
-date: 2017-01-24
+date: 2017-02-13
 author:
 - role: editor
   ins: K. Kuladinithi
