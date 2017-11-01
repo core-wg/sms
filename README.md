@@ -1,10 +1,10 @@
 # 
 
-This is the working area for the Individual internet-draft, "".
+This is the working area for the Individual internet-draft, "draft-becker-core-coap-sms".
 
 * [Editor's copy](https://core-wg.github.io/sms/)    [![Build Status](https://travis-ci.org/core-wg/sms.svg?branch=master)](https://travis-ci.org/core-wg/sms)
-* [Individual Draft] (https://tools.ietf.org/html/draft-becker-core-coap-sms-gprs)
-* [Compare Individual Draft and Editor's copy] (https://tools.ietf.org/rfcdiff?url1=https://tools.ietf.org/id/draft-becker-core-coap-sms-gprs-latest.txt&url2=https://core-wg.github.io/sms/draft-becker-core-coap-sms-gprs-latest.txt)
+* [Individual Draft](https://tools.ietf.org/html/draft-becker-core-coap-sms-gprs)
+* [Compare Individual Draft and Editor's copy](https://tools.ietf.org/rfcdiff?url1=https://tools.ietf.org/id/draft-becker-core-coap-sms-gprs-latest.txt&url2=https://core-wg.github.io/sms/draft-becker-core-coap-sms-gprs-latest.txt)
 
 
 ## Building the Draft
